@@ -108,3 +108,7 @@ SPECTACULAR_SETTINGS = {
 }
 
 SERVE_STATIC = True
+
+SERVE_WEB = True
+
+WEB_ROOT = BASE_DIR / "web/dist"
