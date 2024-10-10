@@ -5,12 +5,7 @@ from django.db import models
 
 class UserManager(BaseUserManager):
     def create_superuser(self, email, password=None, **extra_fields):
-        return super().create_superuser(
-            username=email,
-            email=email,
-            password=password,
-            **extra_fields
-        )
+        return super().create_superuser(username=email, email=email, password=password, **extra_fields)
 
 
 class User(AbstractUser):
