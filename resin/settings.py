@@ -18,6 +18,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "drf_spectacular",
     "drf_spectacular_sidecar",
+    "resin.core",
 ]
 
 MIDDLEWARE = [
@@ -112,3 +113,5 @@ SERVE_STATIC = True
 SERVE_WEB = True
 
 WEB_ROOT = BASE_DIR / "web/dist"
+
+AUTH_USER_MODEL = "core.User"

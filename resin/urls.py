@@ -28,7 +28,7 @@ if settings.SERVE_STATIC:
 
     static_url = r"^%s(?P<path>.*)$" % re.escape(settings.STATIC_URL.lstrip("/"))
 
-    urlpatterns.append(re_path(static_url, serve, {'document_root': settings.STATIC_ROOT}))
+    urlpatterns.append(re_path(static_url, serve, {"document_root": settings.STATIC_ROOT}))
 
 if settings.SERVE_WEB:
     import posixpath
@@ -46,4 +46,6 @@ if settings.SERVE_WEB:
         else:
             return serve(request, "index.html", document_root)
 
-    urlpatterns.append(re_path(r"^(?P<url_path>.*)$", serve_web, {"document_root": settings.WEB_ROOT}),)
+    urlpatterns.append(
+        re_path(r"^(?P<url_path>.*)$", serve_web, {"document_root": settings.WEB_ROOT}),
+    )
