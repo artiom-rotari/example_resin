@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model, authenticate, login, logout
 from django.utils.translation import gettext as _
+from django.views.decorators.csrf import csrf_exempt
 from drf_spectacular.utils import extend_schema
 from rest_framework.decorators import action
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -14,6 +15,7 @@ User = get_user_model()
 
 
 class AuthViewSet(GenericViewSet):
+    @csrf_exempt
     @extend_schema(
         tags=["auth"],
         responses={
@@ -67,7 +69,7 @@ class AuthViewSet(GenericViewSet):
 
 class UserViewSet(GenericViewSet):
     @extend_schema(
-        tags=["user"],
+        tags=["users"],
     )
     @action(
         detail=False,
