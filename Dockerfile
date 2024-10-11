@@ -30,6 +30,8 @@ COPY --from=build-web /app/web/dist /app/web/dist
 COPY --from=build-venv /app/.venv /app/.venv
 ENV PATH="/app/.venv/bin:$PATH"
 
+RUN apt-get update && apt-get install -y curl
+
 COPY ./resin /app/resin
 COPY ./manage.py /app/manage.py
 
@@ -44,3 +46,5 @@ CMD bash -c " \
     python manage.py createsuperuser --noinput || true && \
     python manage.py collectstatic --noinput && \
     python manage.py runserver 0.0.0.0:8000"
+
+HEALTHCHECK --interval=10s --timeout=3s CMD curl -f http://localhost:8000/health/ || exit 1

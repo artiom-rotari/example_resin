@@ -102,11 +102,18 @@ SPECTACULAR_SETTINGS = {
     "DESCRIPTION": "...",
     "VERSION": "0.1.0",
     "SERVE_INCLUDE_SCHEMA": False,
-    "SERVE_PERMISSIONS": REST_FRAMEWORK["DEFAULT_PERMISSION_CLASSES"],
     "SWAGGER_UI_DIST": "SIDECAR",
     "SWAGGER_UI_FAVICON_HREF": "SIDECAR",
     "REDOC_DIST": "SIDECAR",
 }
+
+if DEBUG:
+    SPECTACULAR_SETTINGS["SERVE_PERMISSIONS"] = ["rest_framework.permissions.AllowAny"]
+else:
+    SPECTACULAR_SETTINGS["SERVE_PERMISSIONS"] = [
+        "rest_framework.permissions.IsAuthenticated",
+        "rest_framework.permissions.IsAdminUser",
+    ]
 
 SERVE_STATIC = True
 
